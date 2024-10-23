@@ -1,0 +1,13 @@
+identity:
+  author: fg
+  name: file_hundler
+  label:
+    en_US: File Hundler
+    ja_JP: ファイルハンドラ
+  description:
+    en_US: A tool for file operations.
+    ja_JP: ファイル操作ツール
+  icon: icon.svg
+  tags:
+    - utilities
+    - productivity

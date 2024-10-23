@@ -1,0 +1,16 @@
+# sandboxをビルドして番号を確認するときに使用
+
+# ベースイメージを指定
+FROM langgenius/dify-sandbox:0.2.10
+
+# システムコール番号の確認に必要なパッケージをインストール
+RUN apt-get update && apt-get install -y strace \
+    build-essential \
+    curl \
+    pkg-config \
+    libseccomp-dev \
+    golang \
+    gcc \
+    wget \
+    xz-utils \
+    && rm -rf /var/lib/apt/lists/*

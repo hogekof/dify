@@ -1,0 +1,32 @@
+identity:
+  name: batch_result_to_csv
+  author: fg
+  label:
+    en_US: Batch Result to CSV
+    ja_JP: バッチ結果をCSVに変換
+description:
+  human:
+    en_US: Batch Result to CSV
+    ja_JP: バッチ結果をCSVに変換する。全出力内容をコピペして貼り付ければOK。
+  llm: A tool for file output.
+parameters:
+  - name: batch_result_string
+    type: string
+    required: true
+    label:
+      en_US: Content
+      ja_JP: Content
+    human_description:
+      en_US: Content
+      ja_JP: Content
+    form: llm
+  - name: mime_type
+    type: string
+    required: true
+    label:
+      en_US: mime type
+      ja_JP: mime type
+    human_description:
+      en_US: mime type
+      ja_JP: mime type
+    form: llm

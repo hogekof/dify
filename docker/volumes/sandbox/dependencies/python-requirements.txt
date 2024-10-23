@@ -1,0 +1,12 @@
+pandas==2.2.2
+langchain==0.2.12
+langchain-aws==0.1.15
+langchain-community==0.2.7
+langchain-core==0.2.28
+langchain-openai==0.1.14
+langchain-text-splitters==0.2.2
+langcodes==3.4.0
+langsmith==0.1.84
+sklearn-crfsuite==0.5.0
+openpyxl==3.1.5
+python-dotenv==1.0.1
