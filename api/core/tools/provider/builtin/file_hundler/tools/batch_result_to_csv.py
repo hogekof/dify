@@ -16,10 +16,7 @@ class BatchResultToCsvTool(BuiltinTool):
     ) -> ToolInvokeMessage:
 
         content = tool_parameters['batch_result_string']
-        if 'mime_type' in tool_parameters:
-            meta = {'mime_type': tool_parameters['mime_type']}
-        else:
-            meta = None
+        meta = {'mime_type': 'text/csv'}
         try:
             # データをDataFrameに変換
             df = pd.DataFrame([json.loads(x[:x.find('}') + 1]) for x in content.split('\t') if x.find('{') >= 0])
@@ -31,6 +28,26 @@ class BatchResultToCsvTool(BuiltinTool):
             df.to_csv(csv_buffer, index=False)
 
             blob = csv_buffer.getvalue()  # バイナリデータを取得
-            return self.create_blob_message(blob=blob, meta=meta)
+
+            import csv
+            from io import StringIO
+
+            # Create CSV data in memory
+            csv_output = StringIO()
+            csv_writer = csv.writer(csv_output)
+            csv_writer.writerow(["Name", "Age", "City"])
+            csv_writer.writerow(["Alice", "30", "New York"])
+            csv_writer.writerow(["Bob", "25", "Los Angeles"])
+            csv_writer.writerow(["Charlie", "35", "Chicago"])
+
+            csv_content = csv_output.getvalue()
+            csv_output.close()
+
+            responses = [
+                self.create_blob_message(blob=blob, meta=meta, save_as="result.csv"),
+                self.create_blob_message(blob=csv_content.encode('utf-8'), meta=meta, save_as="result2.csv"),
+                self.create_blob_message(blob='a,b,c', meta=meta, save_as="result3.csv"),
+            ]
+            return responses
         except Exception as e:
             return self.create_text_message(f"Failed to file output, error: {str(e)}")

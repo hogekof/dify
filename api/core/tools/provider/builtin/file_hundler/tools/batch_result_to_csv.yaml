@@ -20,13 +20,3 @@ parameters:
       en_US: Content
       ja_JP: Content
     form: llm
-  - name: mime_type
-    type: string
-    required: true
-    label:
-      en_US: mime type
-      ja_JP: mime type
-    human_description:
-      en_US: mime type
-      ja_JP: mime type
-    form: llm
