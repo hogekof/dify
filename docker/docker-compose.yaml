@@ -293,7 +293,7 @@ services:
   # API service
   api:
     image: langgenius/dify-api:0.13.0
-    #build:
+    # build:
     #  context: ../api
     #  dockerfile: Dockerfile  # Dockerfileのパスを指定
     restart: always
@@ -316,7 +316,7 @@ services:
   # The Celery worker for processing the queue.
   worker:
     image: langgenius/dify-api:0.13.0
-    #build:
+    # build:
     #  context: ../api
     #  dockerfile: Dockerfile  # Dockerfileのパスを指定
     restart: always
