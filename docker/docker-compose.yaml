@@ -501,9 +501,9 @@ services:
   # The Weaviate vector store.
   weaviate:
     image: semitechnologies/weaviate:1.19.0
-    profiles:
-      - ''
-      - weaviate
+    #profiles:
+    #  - ''
+    #  - weaviate
     restart: always
     volumes:
       # Mount the Weaviate data directory to the con tainer.
