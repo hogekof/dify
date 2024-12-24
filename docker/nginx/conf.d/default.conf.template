@@ -1,5 +1,8 @@
 # Please do not directly edit this file. Instead, modify the .env variables related to NGINX configuration.
 
+# placeholder for redirect to https
+${REDIRECT_TO_HTTPS}
+
 server {
     listen ${NGINX_PORT};
     server_name ${NGINX_SERVER_NAME};

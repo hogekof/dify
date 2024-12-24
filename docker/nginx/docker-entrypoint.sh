@@ -33,6 +33,18 @@ env_vars=$(printenv | cut -d= -f1 | sed 's/^/$/g' | paste -sd, -)
 envsubst "$env_vars" < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf
 envsubst "$env_vars" < /etc/nginx/proxy.conf.template > /etc/nginx/proxy.conf
 
+if [ "${FORCE_HTTPS}" = "true" ]; then
+  REDIRECT_TO_HTTPS="server {
+    listen ${NGINX_PORT};
+    server_name ${NGINX_SERVER_NAME};
+    return 301 https://\$host\$request_uri;
+    ${ACME_CHALLENGE_LOCATION}
+}"
+else
+  REDIRECT_TO_HTTPS=''
+fi
+export REDIRECT_TO_HTTPS
+
 envsubst < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf
 
 # Start Nginx using the default entrypoint
